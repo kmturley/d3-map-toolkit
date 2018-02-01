@@ -1,0 +1,51 @@
+{
+  "name": "d3-map-toolkit",
+  "version": "0.0.1",
+  "description": "Starter toolkit for creating maps using D3",
+  "main": "index.js",
+  "scripts": {
+    "convert": "npm run convert:mkdir && npm run convert:shp2json && npm run convert:ndjson && npm run convert:geostitch && npm run convert:eo2topo && npm run convert:topomerge && npm run convert:toposimplify",
+    "convert:mkdir": "mkdir -p src/json/$npm_config_o",
+    "convert:shp2json": "shp2json -n $npm_config_i > src/json/$npm_config_o/1.shp2json.json",
+    "convert:ndjson": "ndjson-map '(d.id = d.properties.iso_a2, delete d.properties, d)' < src/json/$npm_config_o/1.shp2json.json > src/json/$npm_config_o/2.ndjson.json",
+    "convert:geostitch": "geostitch -n < src/json/$npm_config_o/2.ndjson.json > src/json/$npm_config_o/3.geostitch.json",
+    "convert:eo2topo": "geo2topo -q 1e5 -n layer=src/json/$npm_config_o/3.geostitch.json > src/json/$npm_config_o/4.geo2topo.json",
+    "convert:topomerge": "topomerge land=layer < src/json/$npm_config_o/4.geo2topo.json > src/json/$npm_config_o/5.topomerge.json",
+    "convert:toposimplify": "toposimplify -f -p 0.01 < src/json/$npm_config_o/5.topomerge.json > src/json/$npm_config_o/6.toposimplify.json",
+    "preview": "geo2svg -w 960 -h 960 < $npm_config_i > $npm_config_i.svg",
+    "setup": "npm run setup:mkdir && npm run setup:curl && npm run setup:unzip",
+    "setup:mkdir": "mkdir -p data/$npm_config_o",
+    "setup:curl": "curl $npm_config_i -o data/$npm_config_o/data.zip -L0k",
+    "setup:unzip": "unzip data/$npm_config_o/data.zip -d data/$npm_config_o",
+    "start": "http-server ./src",
+    "example": "echo $npm_config_i $npm_config_o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmturley/d3-map-toolkit.git"
+  },
+  "keywords": [
+    "d3",
+    "map",
+    "toolkit",
+    "open",
+    "data",
+    "world"
+  ],
+  "author": "kmturley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmturley/d3-map-toolkit/issues"
+  },
+  "homepage": "https://github.com/kmturley/d3-map-toolkit#readme",
+  "devDependencies": {
+    "d3-geo-projection": "^2.3.2",
+    "http-server": "^0.11.1",
+    "ndjson-cli": "^0.3.1",
+    "shapefile": "^0.6.6",
+    "topojson": "^3.0.2",
+    "topojson-client": "^3.0.0",
+    "topojson-simplify": "^3.0.2"
+  }
+}
