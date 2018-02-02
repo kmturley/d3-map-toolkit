@@ -12,10 +12,12 @@ body {
   width: 100%;
 }
 
-.nation,
-.state,
-.county {
+.layerGroup {
   fill: none;
   stroke: #666;
-  stroke-width: .25;
+  stroke-width: .1;
+}
+
+.layer {
+  stroke-width: inherit;
 }
