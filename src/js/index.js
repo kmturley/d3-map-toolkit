@@ -9,9 +9,10 @@ var folder = window.location.hash ? window.location.hash.slice(1) : 'countries',
   g = svg.append("g"),
   zoom = d3.zoom();
 
+g.attr('class', 'layerGroup');
 svg.call(zoom);
 zoom.on("zoom", zoomed);
-zoom.scaleExtent([1, 100]);
+zoom.scaleExtent([1, 50]);
 
 d3.json("json/" + folder + "/6.toposimplify.json", function(error, us) {
   var layer = g.selectAll('path')
@@ -24,6 +25,6 @@ d3.json("json/" + folder + "/6.toposimplify.json", function(error, us) {
 });
 
 function zoomed() {
-  g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+  // g.style("stroke-width", 0.025 + ((.5 - (d3.event.transform.k/100)) / 10) + "px");
   g.attr('transform', d3.event.transform);
 }
