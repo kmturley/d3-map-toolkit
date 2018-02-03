@@ -7,17 +7,17 @@ body {
   overflow: hidden;
 }
 
-.map {
-  height: 100%;
-  width: 100%;
+.sea {
+  fill: #3CB4CB;
+  pointer-events: all;
 }
 
-.layerGroup {
-  fill: none;
-  stroke: #666;
-  stroke-width: .1;
+.feature {
+  fill: #82BF6E;
+  cursor: pointer;
+  stroke: #6C9E5B;
 }
 
-.layer {
-  stroke-width: inherit;
+.feature.active {
+  fill: #94D97D;
 }
