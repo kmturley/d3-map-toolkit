@@ -1,2 +1,10 @@
 node_modules
 data
+src/json
+
+# Include example data
+!src/json/counties_aus/6.toposimplify.json
+!src/json/counties_ca/6.toposimplify.json
+!src/json/counties_us/6.toposimplify.json
+!src/json/countries/6.toposimplify.json
+!src/json/states/6.toposimplify.json

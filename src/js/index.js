@@ -5,7 +5,8 @@ var folder = window.location.hash ? window.location.hash.slice(1) : 'countries',
   height = window.innerHeight,
   active = d3.select(null),
   scaleMin = 1,
-  scaleMax = 10;
+  scaleMax = 10,
+  overlay = document.getElementById('overlay');
 
 var projection = d3.geoMercator()
   .scale(200)
@@ -41,7 +42,7 @@ d3.json("json/" + folder + "/6.toposimplify.json", function(error, map) {
   if (error) throw error;
   g
     .selectAll("path")
-    .data(topojson.feature(map, map.objects.countries).features)
+    .data(topojson.feature(map, map.objects.layer).features)
     .enter()
     .append("path")
     .attr("d", path)
@@ -67,6 +68,9 @@ function clicked(d) {
     .transition()
     .duration(750)
     .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale));
+
+  overlay.innerHTML = (d.properties.name || '') + ( ' (' + d.id + ')' || '');
+  console.log('clicked', d.id, d.properties.name);
 }
 
 function reset() {
@@ -76,6 +80,7 @@ function reset() {
     .transition()
     .duration(750)
     .call(zoom.transform, d3.zoomIdentity);
+    overlay.innerHTML = 'Click a country';
 }
 
 function zoomed() {
