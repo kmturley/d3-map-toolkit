@@ -21,3 +21,14 @@ body {
 .feature.active {
   fill: #94D97D;
 }
+
+.overlay {
+  background-color: rgba(0, 0, 0, .5);
+  bottom: 0;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1em;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
