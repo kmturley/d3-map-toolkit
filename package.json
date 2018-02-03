@@ -7,7 +7,7 @@
     "convert": "npm run convert:mkdir && npm run convert:shp2json && npm run convert:ndjson && npm run convert:geostitch && npm run convert:eo2topo && npm run convert:topomerge && npm run convert:toposimplify",
     "convert:mkdir": "mkdir -p src/json/$npm_config_o",
     "convert:shp2json": "shp2json -n $npm_config_i > src/json/$npm_config_o/1.shp2json.json",
-    "convert:ndjson": "ndjson-map '(d.id = d.properties.ISO_A2, d.properties = { name: d.properties.NAME_LONG }, d)' < src/json/$npm_config_o/1.shp2json.json > src/json/$npm_config_o/2.ndjson.json",
+    "convert:ndjson": "ndjson-map '(d.id = d.properties.ISO_A2 || d.properties.iso_3166_2 || d.properties.GEOID, d.properties = { name: d.properties.name || d.properties.NAME }, d)' < src/json/$npm_config_o/1.shp2json.json > src/json/$npm_config_o/2.ndjson.json",
     "convert:geostitch": "geostitch -n < src/json/$npm_config_o/2.ndjson.json > src/json/$npm_config_o/3.geostitch.json",
     "convert:eo2topo": "geo2topo -q 1e5 -n layer=src/json/$npm_config_o/3.geostitch.json > src/json/$npm_config_o/4.geo2topo.json",
     "convert:topomerge": "topomerge land=layer < src/json/$npm_config_o/4.geo2topo.json > src/json/$npm_config_o/5.topomerge.json",
