@@ -9,7 +9,7 @@ if (!process.argv[2] || !process.argv[3]) {
 fs.createReadStream(process.argv[2])
   .pipe(ndjson.parse())
   .on('data', (item) => {
-    item.properties.size = Math.ceil(geojsonArea.geometry(item.geometry) / 1000000); // convert meters to kilometers
+    item.properties.size = Math.ceil(geojsonArea.geometry(item.geometry) / (1000000 * 10000)); // convert meters to kilometers and then smaller
   })
   .pipe(ndjson.serialize())
   .pipe(fs.createWriteStream(process.argv[3]))
