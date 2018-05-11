@@ -8,18 +8,23 @@ body {
 }
 
 .sea {
-  fill: #3CB4CB;
+  fill: #b3e5fc;
   pointer-events: all;
 }
 
 .feature {
-  fill: #82BF6E;
+  fill: #fffde7;
   cursor: pointer;
-  stroke: #6C9E5B;
+  stroke: #e0e0e0;
+  transition: fill .2s ease-in-out, stroke .2s ease-in-out;
+}
+
+.feature:hover {
+  fill: #fff9e7;
 }
 
 .feature.active {
-  fill: #94D97D;
+  stroke-width: .1px;
 }
 
 .overlay {
