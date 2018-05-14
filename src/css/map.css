@@ -1,0 +1,92 @@
+html,
+body {
+  font-family: sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.d3-chart {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+/* sea */
+
+.sea {
+  fill: #b3e5fc;
+  height: 100vh;
+  pointer-events: all;
+  width: 100vw;
+}
+
+/* country/state */
+
+.country,
+.state {
+  fill:#fffde7;
+  cursor: pointer;
+  stroke: #dbdac7;
+  stroke-width: .05px;
+  transition: fill .2s ease-in-out, stroke .2s ease-in-out;
+}
+
+.country:hover,
+.state:hover {
+  fill: #dbdac7;
+}
+
+.state.active {
+  stroke: #fff;
+  stroke-width: .05px;
+  z-index: 10;
+}
+
+.country-label,
+.state-label,
+.state-label-bg {
+  transform-origin: center;
+}
+
+.state-label-bg {
+  pointer-events: none;
+}
+
+.country-label,
+.state-label {
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+.state-label {
+  fill: rgba(255, 255, 255, .5);
+  font-size: .07em;
+}
+
+.country-label {
+  fill: rgba(0, 0, 0, .5);
+  font-size: .3em;
+  font-weight: bold;
+}
+
+/* footer */
+
+.footer {
+  bottom: 0;
+  color: #fff;
+  left: 0;
+  padding: 1em 1em 1.25em;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.footer p {
+  margin: 0 0 .5em 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.footer .button {
+  margin-right: 1em;
+}

@@ -5,12 +5,18 @@
     <title>D3 Zoomable US Map</title>
     <meta name="description" content="D3 Zoomable US Map" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/map.css" />
 </head>
 <body>
-  <div class="overlay" id="overlay">Click a country</div>
+  <div class="d3-chart" id="chart"></div>
+  <div class="footer" id="overlay"></div>
   <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <script src="https://d3js.org/topojson.v2.min.js"></script>
-  <script src="js/index.js"></script>
+  <script src="js/Data.js"></script>
+  <script src="js/Map.js"></script>
+  <script>
+    Map.init();
+  </script>
 </body>
 </html>
